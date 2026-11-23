@@ -1,5 +1,6 @@
 package org.insbaixcamp.fitnessapp.ui.theme
 
+import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -8,46 +9,35 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = FitnessOrange,
-    onPrimary = Color.White,
-    primaryContainer = Color(0xFF3E2723),
-    onPrimaryContainer = Color(0xFFFFCC80),
-    secondary = FitnessLime,
-    onSecondary = Color.Black,
-    tertiary = FitnessBlue,
-    background = FitnessDarkBackground,
-    onBackground = FitnessTextLight,
-    surface = FitnessSurfaceDark,
-    onSurface = FitnessTextLight,
-    surfaceVariant = FitnessCardDark,
-    onSurfaceVariant = FitnessTextGray
+    primary = Purple80,
+    secondary = PurpleGrey80,
+    tertiary = Pink80
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = FitnessOrange,
+    primary = Purple40,
+    secondary = PurpleGrey40,
+    tertiary = Pink40
+
+    /* Other default colors to override
+    background = Color(0xFFFFFBFE),
+    surface = Color(0xFFFFFBFE),
     onPrimary = Color.White,
-    primaryContainer = Color(0xFFFFE0B2),
-    onPrimaryContainer = Color(0xFFE65100),
-    secondary = Color(0xFF00C853),
     onSecondary = Color.White,
-    tertiary = Color(0xFF0288D1),
-    background = Color(0xFFF8F9FA),
-    onBackground = Color(0xFF212121),
-    surface = Color(0xFFFFFFFF),
-    onSurface = Color(0xFF212121),
-    surfaceVariant = Color(0xFFEEEEEE),
-    onSurfaceVariant = Color(0xFF757575)
+    onTertiary = Color.White,
+    onBackground = Color(0xFF1C1B1F),
+    onSurface = Color(0xFF1C1B1F),
+    */
 )
 
 @Composable
 fun FitnessAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is false by default to enforce our custom energetic gym branding
-    dynamicColor: Boolean = false,
+    // Dynamic color is available on Android 12+
+    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

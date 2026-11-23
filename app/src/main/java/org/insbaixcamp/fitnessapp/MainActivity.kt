@@ -29,7 +29,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.insbaixcamp.fitnessapp.ui.screen.EditProfileScreen
 import org.insbaixcamp.fitnessapp.ui.screen.ProfileScreen
-import org.insbaixcamp.fitnessapp.ui.training.TrainingScreen
+import org.insbaixcamp.fitnessapp.ui.screen.TrainingScreen
 import org.insbaixcamp.fitnessapp.ui.screen.WeightTrackingScreen
 import org.insbaixcamp.fitnessapp.ui.theme.FitnessAppTheme
 

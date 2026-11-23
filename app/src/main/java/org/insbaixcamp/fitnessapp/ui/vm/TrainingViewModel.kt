@@ -1,4 +1,4 @@
-package org.insbaixcamp.fitnessapp.ui.training
+package org.insbaixcamp.fitnessapp.ui.vm
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -76,7 +76,8 @@ class TrainingViewModel : ViewModel() {
                 val body = response.body()
 
                 if (response.isSuccessful &&
-                    body?.success == true) {
+                    body?.success == true
+                ) {
 
                     exercises = if (cursor == null) {
                         body.data

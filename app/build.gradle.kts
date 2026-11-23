@@ -35,18 +35,20 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy.force("org.jetbrains.kotlin:kotlin-stdlib:2.2.10")
+    resolutionStrategy.force("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.2.10")
+    resolutionStrategy.force("org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.2.10")
+    resolutionStrategy.force("org.jetbrains.kotlin:kotlin-reflect:2.2.10")
+}
+
 dependencies {
-    // Retrofit: peticions HTTP
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    // Gson: conversió de JSON a Kotlin
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
     implementation(
-        "com.squareup.retrofit2:converter-gson:2.11.0"
+        "com.squareup.retrofit2:converter-gson:3.0.0"
     )
-    // Coil: carregar imatges amb Compose
-    implementation("io.coil-kt:coil-compose:2.7.0")
-    // Coil: mostrar GIF animats
-    implementation("io.coil-kt:coil-gif:2.7.0")
-    // ViewModel per a Compose
+    implementation("io.coil-kt.coil3:coil-compose:3.6.3")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.6.3")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)

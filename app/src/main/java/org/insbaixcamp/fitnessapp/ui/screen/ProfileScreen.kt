@@ -3,24 +3,14 @@ package org.insbaixcamp.fitnessapp.ui.screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -46,133 +36,85 @@ fun ProfileScreen(
     objectiu: String,
     onEditar: () -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Column(modifier = Modifier.fillMaxWidth()) {
-            // Header: Foto i nom amb estil atlètic
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Surface(
-                    modifier = Modifier.size(110.dp),
-                    shape = CircleShape,
-                    color = MaterialTheme.colorScheme.primaryContainer,
-                    shadowElevation = 4.dp
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Image(
-                            painter = painterResource(R.drawable.ic_launcher_foreground),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .size(90.dp)
-                                .clip(CircleShape)
-                        )
-                    }
-                }
-                Spacer(Modifier.padding(8.dp))
-                Text(
-                    text = nom,
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onBackground,
-                    textAlign = TextAlign.Center,
-                )
-                Text(
-                    text = email,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = TextAlign.Center
-                )
-            }
-
-            Spacer(Modifier.padding(16.dp))
-
-            // Targeta de mètriques físiques (Edat, Gènere, Alçada, Pes)
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant
-                ),
-                elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-            ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(12.dp),
-                    horizontalArrangement = Arrangement.SpaceAround
-                ) {
-                    MetricItem(label = "Edat", value = formatDate(dataNaixement))
-                    MetricItem(label = "Gènere", value = genere)
-                    MetricItem(label = "Alçada", value = "$alçada cm")
-                    MetricItem(label = "Pes", value = "$pes Kg")
-                }
-            }
-
-            Spacer(Modifier.padding(16.dp))
-
-            // Secció Objectiu
-            Text(
-                text = "🎯 Objectiu Fitness",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(bottom = 8.dp)
+    Column {
+        // Caixa de foto i nom
+        Column(
+            Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(R.drawable.ic_launcher_foreground),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(120.dp)
+                    .clip(CircleShape)
+                    .background(Color.Black)
             )
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant
-                ),
-                elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-            ) {
-                Text(
-                    text = objectiu,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(16.dp)
-                )
+            Text(
+                text = nom,
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+            )
+            Text(
+                text = email,
+                fontSize = 16.sp,
+                color = Color.Gray,
+                textAlign = TextAlign.Center
+            )
+        }
+        Spacer(Modifier.padding(16.dp))
+        Card(Modifier.padding(horizontal = 16.dp)) {
+            Row {
+                // Caixa data de naixement
+                Column(Modifier.padding(16.dp)) {
+                    Text("Edat", fontSize = 16.sp, color = Color.Gray)
+                    val formattedDate = formatDate(dataNaixement)
+                    Text(formattedDate, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                }
+                // Caixa gènere
+                Column(Modifier.padding(16.dp)) {
+                    Text("Gènere", fontSize = 16.sp, color = Color.Gray)
+                    Text(genere, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                }
+                // Caixa alçada
+                Column(Modifier.padding(16.dp)) {
+                    Text("Alçada", fontSize = 16.sp, color = Color.Gray)
+                    Text("$alçada cm", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                }
+                // Caixa pes
+                Column(Modifier.padding(16.dp)) {
+                    Text("Pes", fontSize = 16.sp, color = Color.Gray)
+                    Text("$pes Kg", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                }
             }
         }
-
-        // Botó flotant d'edició estil esportiu
-        Surface(
-            modifier = Modifier
-                .align(Alignment.TopEnd)
-                .clip(CircleShape)
-                .clickable(onClick = onEditar),
-            color = MaterialTheme.colorScheme.primary,
-            shadowElevation = 6.dp
-        ) {
-            Icon(
-                imageVector = Icons.Default.Edit,
-                contentDescription = "Editar perfil",
-                tint = MaterialTheme.colorScheme.onPrimary,
-                modifier = Modifier.padding(12.dp)
+        Spacer(Modifier.padding(16.dp))
+        Text(
+            text = "Objectiu",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+        Card(Modifier.padding(horizontal = 16.dp)) {
+            Text(
+                text = objectiu,
+                fontSize = 16.sp,
+                color = Color.Gray,
+                modifier = Modifier.padding(16.dp)
             )
         }
     }
-}
-
-@Composable
-fun MetricItem(label: String, value: String) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-        Spacer(Modifier.padding(2.dp))
-        Text(
-            text = value,
-            style = MaterialTheme.typography.bodyMedium,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSurface
+    Column(
+        Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.End
+    ) {
+        Image(
+            painter = painterResource(android.R.drawable.ic_menu_edit),
+            contentDescription = null,
+            modifier = Modifier
+                .size(64.dp)
+                .clickable(onClick = onEditar)
         )
     }
 }
